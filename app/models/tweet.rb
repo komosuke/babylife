@@ -1,6 +1,24 @@
 class Tweet < ApplicationRecord
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :after_birth
+
+  enum genre:{
+    default:  0,
+    month_1:  1,
+    month_2:  2,
+    month_3:  3,
+    month_6:  4,
+    month_8:  5,
+    month_10: 6,
+    year_1:   7,
+    year_1_5: 8,
+    year_2:   9,
+    year_3:   10,
+    year_4:   11,
+    year_5:   12,
+    year_6:   13,
+    year_7:   14,
+    overyear: 15 
+  }
+
   belongs_to :user
   has_one_attached :image
 
@@ -9,5 +27,4 @@ class Tweet < ApplicationRecord
     validates :title
     validates :content
   end
-  validates :after_birth_id, numericality: { other_than: 1 }
 end

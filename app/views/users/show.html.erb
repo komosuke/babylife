@@ -1,0 +1,17 @@
+<div class="user-show">
+  <div class="user-box">
+  <h1>
+  <%= @user.nickname %>のマイページ
+  </h1>
+   <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "item-red-btn" %>
+    <h2 class="name">
+    <%= @user.nickname %>
+    </h2>
+    <div>
+    <%= @user.birthday %>
+    </div>
+    <%= @user.profile %>
+
+
+  </div>
+</div>

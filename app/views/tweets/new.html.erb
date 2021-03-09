@@ -1,19 +1,19 @@
 <div class="container pt-5 mt-5">
-  <div class= form-group>
-  <%= bootstrap_form_with model: @tweet, local: true do |f|%>
+  <div class=form-group>
+    <%= bootstrap_form_with model: @tweet, local: true do |f|%>
     <div class="field">
-    <%= f.file_field :image %>
+      <%= f.file_field :image %>
     </div>
     <div class="field">
-    <%= f.text_field :title %>
+      <%= f.text_field :title %>
     </div>
-    <div class= "field">
-    <%= f.text_area :content %>
+    <div class="field">
+      <%= f.text_area :content %>
     </div>
-    <div class= "field">
-    <%= f.collection_select(:after_birth_id, AfterBirth.all, :id, :name, {}, {class:"genre-select"}) %>
+    <div class="field">
+    <%= f.select :genre, Tweet.genres.keys.map{|k| [I18n.t("enums.tweet.genre.#{k}"), k]} %>
     </div>
     <%= f.submit "投稿する" %>
-  <% end %>
+    <% end %>
   </div>
 </div>
