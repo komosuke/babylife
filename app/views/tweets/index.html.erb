@@ -1,15 +1,11 @@
+
 <main class="container">
 
-  <div class="starter-template text-center py-5 px-3">
-    <h1></h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+  <div class="text-center py-5 px-3">
+    <h1>役立つ情報をつぶやいていこう</h1>
   </div>
   <%= link_to "投稿する", new_tweet_path, class: "btn btn-primary"  %>
-  <% @tweets.each do |tweet| %>
-      <%= image_tag tweet.image %>
-      <%= tweet.title %>
-      <%= tweet.content %>
-      <%= tweet.after_birth.name %>
-  <% end %>
+  
+  <%= render "shared/tweet" %>
 
 </main><!-- /.container -->

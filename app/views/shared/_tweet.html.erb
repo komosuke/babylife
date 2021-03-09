@@ -1,0 +1,23 @@
+<div class='tweet-contents'>
+  <h1 class='title'>みんなの情報</h1>
+  <% @tweets.each do |tweet| %>
+  <div class="tweet-block">
+    <div class="tweet-nickname">
+      <%= tweet.user.nickname %>
+    </div>
+    <% if user_signed_in? && current_user.id == tweet.user_id %>
+    <%= link_to "削除", tweet_path(tweet.id), method: :delete %>
+    <% end%>
+    <div class='tweet-img-content'>
+      <%= image_tag tweet.image, class: "tweet-img" %>
+    </div>
+    <div class="tweet-title">
+      <%= tweet.title %>
+    </div>
+    <div class="tweet-content">
+      <%= tweet.content %></p>
+    </div>
+    <%= tweet.genre_i18n %>
+  </div>
+  <% end %>
+</div>
