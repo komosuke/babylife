@@ -26,5 +26,7 @@ class Tweet < ApplicationRecord
     validates :image
     validates :title
     validates :content
+    validates :genre
   end
+  
 end
