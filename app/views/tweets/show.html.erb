@@ -1,0 +1,39 @@
+<div class="tweet-block">
+  <div class="tweet-nickname">
+    <%= @tweet.user.nickname %>
+  </div>
+  <% if user_signed_in? && current_user.id == @tweet.user_id %>
+  <%= link_to "削除", tweet_path(@tweet.id), method: :delete %>
+  <% end%>
+  <div class='tweet-img-content'>
+    <%= image_tag @tweet.image, class: "tweet-img" %>
+  </div>
+  <div class="tweet-title">
+    <%= @tweet.title %>
+  </div>
+  <div class="tweet-content">
+    <%= @tweet.content %></p>
+  </div>
+  <%= @tweet.genre_i18n %>
+</div>
+
+<% if user_signed_in? %>
+  <%= form_with model: [@tweet, @comment], local: true do |f| %>
+    <div>
+      <%= f.text_field :text, placeholder: "コメントする" %>
+    </div>
+    <%= f.submit "送信" %>
+  <% end %>
+<% end %>
+
+<% @tweet.comments.each do |comment| %>
+   <p>
+   <%= comment.text %>
+    <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+    <% if comment.user == current_user %>
+      <%= link_to '削除', [@tweet, comment], method: :delete %>
+    <% end %>
+  </p>
+  <div>
+  </div>
+<% end %>

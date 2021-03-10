@@ -209,7 +209,6 @@ ja:
   enums:
     tweet:
       genre:
-        default: "--"
         month_1:  "生後1ヶ月"
         month_2:  "生後2ヶ月"
         month_3:  "生後3ヶ月"
