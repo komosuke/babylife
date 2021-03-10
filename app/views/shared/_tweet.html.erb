@@ -9,7 +9,9 @@
     <%= link_to "削除", tweet_path(tweet.id), method: :delete %>
     <% end%>
     <div class='tweet-img-content'>
+    <%= link_to [tweet] do %>
       <%= image_tag tweet.image, class: "tweet-img" %>
+      <% end %>
     </div>
     <div class="tweet-title">
       <%= tweet.title %>
@@ -20,4 +22,5 @@
     <%= tweet.genre_i18n %>
   </div>
   <% end %>
+  
 </div>

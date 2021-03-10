@@ -1,7 +1,6 @@
 class Tweet < ApplicationRecord
 
   enum genre:{
-    default:  0,
     month_1:  1,
     month_2:  2,
     month_3:  3,
@@ -21,6 +20,7 @@ class Tweet < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_many :comments
 
   with_options presence: true do
     validates :image
