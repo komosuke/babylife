@@ -1,7 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :move_to_index, only: [:destroy]
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order(created_at: :desc)
   end
 
   def new
@@ -18,6 +17,9 @@ class TweetsController < ApplicationController
   end
 
   def destroy
+    tweet = Tweet.find(params[:id])
+    tweet.destroy
+    redirect_to root_path
   end
 
   private
@@ -26,7 +28,4 @@ class TweetsController < ApplicationController
     params.require(:tweet).permit(:title, :content, :genre, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    redirect_to root_path if @tweet.user != current_user
-  end
 end
