@@ -4,13 +4,13 @@
       <h1 class="title">
         <%= @user.nickname%>のマイページ
       </h1>
+      <% if user_signed_in? %>
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <% if user_signed_in? %>
           <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "nav-link active" %>
-          <% end %>
         </li>
       </ul>
+      <% end %>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
           <%= @user.nickname %>
@@ -25,6 +25,8 @@
     </div>
   </div>
 </div>
+<%= render 'shared/calender' %>
+
 
 <div class='tweet-contents'>
 <% @user.tweets.each do |tweet| %>

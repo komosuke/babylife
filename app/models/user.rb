@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :tweets
   has_many :comments
+  has_many :memories
 
   with_options presence: true do
     validates :nickname
