@@ -42,3 +42,11 @@
 
 - belongs_to :user
 - belongs_to :tweet
+
+## memories テーブル
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| title       | string     | null: false       |
+| content     | text       |                   |
+| memory_date | date       | null: false       |
+| user        | references | foreign_key: true |
