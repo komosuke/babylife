@@ -1,9 +1,10 @@
+
 <%= link_to "記録する", new_user_memory_path(@user.id), class: "btn btn-primary" %>
 <div class="card">
-<%= month_calendar(events: @memories) do |date, memories| %>
+<%= month_calendar events: @memories do |date, memories| %>
   <%= date.day %>
 
-  <% memories.each do |memoriy| %>
+  <% memories.each do |memory| %>
     <div>
       <%= memory.title %>
     </div>
