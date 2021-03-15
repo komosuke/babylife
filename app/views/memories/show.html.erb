@@ -5,7 +5,7 @@
   <% if user_signed_in? %>
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <%# <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "nav-link active" %> %>
+      <%= link_to "編集", edit_user_memory_path(@memory.id), method: :get, class: "nav-link active" %>
     </li>
   </ul>
   <% end %>

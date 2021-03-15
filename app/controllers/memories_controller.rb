@@ -1,5 +1,6 @@
 class MemoriesController < ApplicationController
   before_action :set_user
+  before_action :set_memory, only:[:show, :edit, :update]
 
   def new
     @memory = current_user.memories.new
@@ -16,10 +17,16 @@ class MemoriesController < ApplicationController
   end
 
   def show
-    @memory = current_user.memories.find(params[:id])
   end
 
-  
+  def edit
+  end
+
+  def update
+    @memory.update(memory_params)
+    redirect_to user_memory_path(@user.id)
+  end
+    
 
 
 
@@ -33,6 +40,10 @@ class MemoriesController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_memory
+    @memory = current_user.memories.find(params[:id])
   end
 
 end
