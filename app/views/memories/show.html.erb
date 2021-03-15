@@ -1,0 +1,23 @@
+<div class="card" style="width: 30rem;">
+  <h1 class="title">
+    記録
+  </h1>
+  <% if user_signed_in? %>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%# <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "nav-link active" %> %>
+    </li>
+  </ul>
+  <% end %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <%= @memory.memory_date %>
+    </li>
+    <li class="list-group-item">
+      <%= @memory.title %>
+    </li>
+    <li class="list-group-item">
+      <%= simple_format(@memory.content) %>
+    </li>
+  </ul>
+</div>

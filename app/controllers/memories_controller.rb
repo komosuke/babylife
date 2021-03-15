@@ -15,6 +15,14 @@ class MemoriesController < ApplicationController
     end
   end
 
+  def show
+    @memory = current_user.memories.find(params[:id])
+  end
+
+  
+
+
+
 
 
   private
