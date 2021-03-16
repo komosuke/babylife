@@ -11,8 +11,8 @@
     <%= link_to [tweet] do %>
     <div>
       <%= image_tag tweet.image, class: "img-fluid img-thumbnail" %>
-      </div>
-      <% end %>
+    </div>
+    <% end %>
     <div class="tweet-title">
       <%= tweet.title %>
     </div>
@@ -20,7 +20,19 @@
       <%= tweet.content %></p>
     </div>
     <%= tweet.genre_i18n %>
+    <div>
+      <% if current_user.already_favorited?(tweet) %>
+        <%= link_to tweet_favorites_path(tweet), method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= link_to tweet_favorites_path(tweet), method: :post do %>
+          <i class="far fa-heart"></i>
+        <% end %>
+      <% end %>
+      <%= tweet.favorites.count %>
+    </div>
   </div>
   <% end %>
-  
+
 </div>

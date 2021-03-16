@@ -5,8 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tweets
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :memories
+  has_many :favorites, dependent: :destroy
+
+  def already_favorited?(tweet)
+    self.favorites.exists?(tweet_id: tweet.id)
+  end
 
   with_options presence: true do
     validates :nickname

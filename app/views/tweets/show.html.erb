@@ -18,6 +18,18 @@
           <%= @tweet.content %></p>
         </div>
         <%= @tweet.genre_i18n %>
+        <div>
+        <% if current_user.already_favorited?(@tweet) %>
+          <%= link_to tweet_favorites_path(@tweet), method: :delete do %>
+            <i class="fas fa-heart"></i>
+          <% end %>
+        <% else %>
+          <%= link_to tweet_favorites_path(@tweet), method: :create do %>
+            <i class="far fa-heart"></i>
+          <% end %>
+        <% end %>
+        <%= @tweet.favorites.count %>
+        </div>
       </div>
       <% if user_signed_in? %>
       <%= bootstrap_form_with model: [@tweet, @comment], local: true do |f| %>
@@ -31,7 +43,7 @@
         <%= comment.text %>
         <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
         <% if comment.user == current_user %>
-        <%= link_to '削除', [@tweet, comment], method: :delete %>
+        <%= link_to '削除', [@tweet, comment], method: :delete, class: "btn btn-danger " %>
         <% end %>
       </p>
       <div>
