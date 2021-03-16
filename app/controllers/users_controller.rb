@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @memories = Memory.where(user_id: @user.id)
-    @memory = Memory.new 
+    @memory = Memory.new
   end
 
   private

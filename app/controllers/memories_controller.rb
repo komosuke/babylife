@@ -1,6 +1,6 @@
 class MemoriesController < ApplicationController
+  before_action :set_memory, only:[:show, :edit, :update, :destroy]
   before_action :set_user
-  before_action :set_memory, only:[:show, :edit, :update]
 
   def new
     @memory = current_user.memories.new
@@ -12,7 +12,7 @@ class MemoriesController < ApplicationController
     if @memory.save
       redirect_to user_path(@user.id)
     else
-      render new
+      redirect_to new_user_memory_path
     end
   end
 
@@ -26,7 +26,11 @@ class MemoriesController < ApplicationController
     @memory.update(memory_params)
     redirect_to user_memory_path(@user.id)
   end
-    
+  
+  def destroy
+    @memory.destroy
+    redirect_to user_path(@user.id)
+  end
 
 
 

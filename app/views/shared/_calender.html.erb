@@ -6,7 +6,7 @@
 
   <% memories.each do |memory| %>
     <div>
-      <%= link_to memory.title, user_memory_path(memory.id) %>
+      <%= link_to memory.title, user_memory_path(@user, memory) %>
     </div>
   <% end %>
 <% end %>
