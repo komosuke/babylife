@@ -14,6 +14,8 @@
 
 - has_many :tweets
 - has_many :comments
+- has_many :memories
+- has_many :favorites
 
 
 ## tweets テーブル
@@ -29,6 +31,7 @@
 
 - has_many :comments
 - belongs_to :user
+- has_many :favorites
 
 
 ## comment テーブル
@@ -50,3 +53,14 @@
 | content     | text       |                   |
 | memory_date | date       | null: false       |
 | user        | references | foreign_key: true |
+
+- belongs_to :user
+
+## favorite テーブル
+| Column   | Type       | Options           |
+| -------- | ---------- | ----------------- |
+| user_id  | integer    |                   |
+| tweet_id | integer    |                   |
+
+- belongs_to :user
+- belongs_to :tweet
