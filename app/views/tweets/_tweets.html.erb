@@ -1,6 +1,6 @@
 <div class='tweet-contents'>
   <h1 class='title'>みんなの情報</h1>
-  <% @tweets.each do |tweet| %>
+  <% tweets.each do |tweet| %>
   <div class="tweet-block">
     <div class="tweet-nickname">
       <%= tweet.user.nickname %>
@@ -21,15 +21,19 @@
     </div>
     <%= tweet.genre_i18n %>
     <div>
+    <% if user_signed_in? %>
       <% if current_user.already_favorited?(tweet) %>
         <%= link_to tweet_favorites_path(tweet), method: :delete do %>
-          <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
         <% end %>
       <% else %>
         <%= link_to tweet_favorites_path(tweet), method: :post do %>
-          <i class="far fa-heart"></i>
+       <i class="far fa-heart"></i>
         <% end %>
       <% end %>
+    <% else %>
+      <i class="far fa-heart"></i>
+    <% end %>
       <%= tweet.favorites.count %>
     </div>
   </div>

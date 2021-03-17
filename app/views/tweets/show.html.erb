@@ -19,14 +19,18 @@
         </div>
         <%= @tweet.genre_i18n %>
         <div>
-        <% if current_user.already_favorited?(@tweet) %>
-          <%= link_to tweet_favorites_path(@tweet), method: :delete do %>
-            <i class="fas fa-heart"></i>
+        <% if user_signed_in? %>
+          <% if current_user.already_favorited?(@tweet) %>
+            <%= link_to tweet_favorites_path(@tweet), method: :delete do %>
+              <i class="fas fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= link_to tweet_favorites_path(@tweet), method: :create do %>
+              <i class="far fa-heart"></i>
+            <% end %>
           <% end %>
         <% else %>
-          <%= link_to tweet_favorites_path(@tweet), method: :create do %>
-            <i class="far fa-heart"></i>
-          <% end %>
+          <i class="far fa-heart"></i>
         <% end %>
         <%= @tweet.favorites.count %>
         </div>
