@@ -1,0 +1,2 @@
+
+$("#favorites-<%= @tweet.id %>").html("<%= escape_javascript(render partial: 'favorites/favorite', locals: { tweet: @tweet}) %>");

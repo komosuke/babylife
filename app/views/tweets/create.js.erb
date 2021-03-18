@@ -1,0 +1,5 @@
+
+$("textarea").val("");
+$("input").val("");
+$('#exampleModal').modal('hide')
+$('.tweets').html("<%= escape_javascript(render partial: 'tweet', collection: @tweets, as: :tweet) %>")
