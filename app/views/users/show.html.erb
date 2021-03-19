@@ -1,27 +1,29 @@
-<div class="user-show">
-  <div class="user-box">
-    <div class="card" style="width: 30rem;">
-      <h1 class="title">
-        <%= @user.nickname%>のマイページ
-      </h1>
-      <% if user_signed_in? %>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "nav-link active" %>
-        </li>
-      </ul>
-      <% end %>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <%= @user.nickname %>
-        </li>
-        <li class="list-group-item">
-          <%= @user.birthday %>
-        </li>
-        <li class="list-group-item">
-          <%= @user.profile %>
-        </li>
-      </ul>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.nickname%></h5>
+          <% if user_signed_in? %>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "nav-link active" %>
+            </li>
+          </ul>
+          <% end %>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= @user.nickname %>
+            </li>
+            <li class="list-group-item">
+              <%= @user.birthday %>
+            </li>
+            <li class="list-group-item">
+              <%= @user.profile %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

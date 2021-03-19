@@ -1,21 +1,25 @@
-<div class="tweet-nickname">
-  <%= tweet.user.nickname %>
-</div>
-<% if user_signed_in? && current_user.id == tweet.user_id %>
-  <%= link_to "削除", tweet_path(tweet.id), method: :delete %>
-<% end%>
-<%= link_to [tweet] do %>
-<div>
-  <%= image_tag tweet.image, class: "img-fluid img-thumbnail" %>
-</div>
-<% end %>
-<div class="tweet-title">
-  <%= tweet.title %>
-</div>
-<div class="tweet-content">
-  <%= tweet.content %></p>
-</div>
-<%= tweet.genre_i18n %>
-<div id="favorites-<%= tweet.id %>">
-<%= render partial: "favorites/favorite", locals: { tweet: tweet } %>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= tweet.user.nickname %>
+    </h5>
+    <% if user_signed_in? && current_user.id == tweet.user_id %>
+      <%= link_to "削除", tweet_path(tweet.id), method: :delete %>
+    <% end%>
+    <%= link_to [tweet] do %>
+    <div>
+      <%= image_tag tweet.image, class: "img-fluid img-thumbnail" %>
+    </div>
+    <% end %>
+    <div class="tweet-title">
+      <%= tweet.title %>
+    </div>
+    <div class="tweet-content">
+      <%= tweet.content %></p>
+    </div>
+    <%= tweet.genre_i18n %>
+    <div id="favorites-<%= tweet.id %>">
+    <%= render partial: "favorites/favorite", locals: { tweet: tweet } %>
+    </div>
+  </div>
 </div>
