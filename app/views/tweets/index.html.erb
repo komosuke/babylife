@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 pt-5">
+    <div class="col-12 mx-auto pt-5">
       <h1>役立つ情報をつぶやいていこう</h1>
     </div>
     <% if user_signed_in? %>
-    <div class=col-3>
+    <div class="col-12">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         新規投稿
       </button>
     </div>
     <% end %>
-    <div class="col-9 tweets">
-          <h1 class='title'>みんなの情報</h1>
-          <div class="tweets">
-            <%= render partial: "tweet", collection: @tweets, as: :tweet %>
-          </div>
+    <div class="col-8 mx-auto">
+      <h2 class='text-center'>みんなの投稿</h1>
+      <div class="tweets">
+        <%= render partial: "tweet", collection: @tweets, as: :tweet %>
+      </div>
     </div>
   </div>
 </div>
