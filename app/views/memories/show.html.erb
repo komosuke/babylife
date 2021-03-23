@@ -2,15 +2,12 @@
   <div class="row">
     <div class="col-10 mx-auto">
 　　　　<div class="card">
-  　　　<h1>記録</h1>
+  　　　<h2 class="text-center">記録</h2>
   <% if user_signed_in? %>
   <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <%= link_to "編集", edit_user_memory_path(@user, @memory), method: :get, class: "nav-link active" %>
-    </li>
-      <li class="nav-item">
-      <%= link_to "削除", user_memory_path(@user, @memory), method: :delete, class: "nav-link active" %>
-    </li>
+      <%= link_to "編集", edit_user_memory_path(@user, @memory), method: :get, class: "btn btn-success" %>
+    
+      <%= link_to "削除", user_memory_path(@user, @memory), method: :delete, class: "btn btn-danger" %>
   </ul>
   <% end %>
   <ul class="list-group list-group-flush">

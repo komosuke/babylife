@@ -21,6 +21,13 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    genre = params[:genre]
+    @tweets = Tweet.where(genre: genre).order(created_at: :desc)
+    @tweet = Tweet.new
+    render :index
+  end
+
   private
 
   def tweet_params

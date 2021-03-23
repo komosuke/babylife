@@ -2,23 +2,26 @@
   <div class="row">
     <div class="col-8 mx-auto">
       <div class="card">
-        <picture class=" card-image-top text-center">
+        <picture class=" card-image-top text-center mt-3">
         <%= image_tag @tweet.image, class: "img-fluid img-thumbnail" %>
         </picture>
         <div class="card-body">
+        <% if user_signed_in? && current_user.id == @tweet.user_id %>
+          <%= link_to "削除", tweet_path(@tweet.id), method: :delete, class: "btn btn-danger btn-sm" %>
+          <% end%>
           <h4 class="card-title text-center"><%= @tweet.title %></h4>
           <ul class="list-group">
             <li class="list-group-item">投稿者名:<%= @tweet.user.nickname %></li>
             <li class="list-group-item"><%= simple_format @tweet.content %></li>
-            <li class="list-group-item"><%= @tweet.genre_i18n %></li>
+            <li class="list-group-item">
+              <%= link_to @tweet.genre_i18n, search_tweets_path(genre: @tweet.genre) %>
+            </li> 
           </ul>
           <div id="favorites-<%= @tweet.id %>">
           <%= render 'favorites/favorite', tweet: @tweet %>
           </div>
-          <% if user_signed_in? && current_user.id == @tweet.user_id %>
-          <%= link_to "削除", tweet_path(@tweet.id), method: :delete, class: "btn btn-danger btn-sm" %>
-          <% end%>
-          <p>
+          
+          <p class="text-right">
             <small class="text-muted">更新日：<%= @tweet.updated_at.strftime("%Y-%m-%d") %></small>
           </p>
          </div>
