@@ -68,3 +68,8 @@ gem 'image_processing', '~> 1.2'
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'simple_calendar', '~> 2.0'
+gem "aws-sdk-s3", require: false
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
