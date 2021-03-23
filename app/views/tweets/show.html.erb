@@ -1,47 +1,60 @@
-<div class="container">
-  <div class="text-center py-5 px-3">
-    <div class='tweet-contents'>
-      <div class="tweet-block">
-        <div class="tweet-nickname">
-          <%= @tweet.user.nickname %>
-        </div>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="card">
+        <picture class=" card-image-top text-center mt-3">
+        <%= image_tag @tweet.image, class: "img-fluid img-thumbnail" %>
+        </picture>
+        <div class="card-body">
         <% if user_signed_in? && current_user.id == @tweet.user_id %>
-        <%= link_to "削除", tweet_path(@tweet.id), method: :delete %>
-        <% end%>
-        <div>
-          <%= image_tag @tweet.image, class: "img-fluid img-thumbnail" %>
-        </div>
-        <div class="tweet-title">
-          <%= @tweet.title %>
-        </div>
-        <div class="tweet-content">
-          <%= @tweet.content %></p>
-        </div>
-        <%= @tweet.genre_i18n %>
-        <div>
-
-        <%= render 'favorites/favorite', tweet: @tweet %>
-        </div>
+          <%= link_to "削除", tweet_path(@tweet.id), method: :delete, class: "btn btn-danger btn-sm" %>
+          <% end%>
+          <h4 class="card-title text-center"><%= @tweet.title %></h4>
+          <ul class="list-group">
+            <li class="list-group-item">投稿者名:<%= @tweet.user.nickname %></li>
+            <li class="list-group-item"><%= simple_format @tweet.content %></li>
+            <li class="list-group-item">
+              <%= link_to @tweet.genre_i18n, search_tweets_path(genre: @tweet.genre) %>
+            </li> 
+          </ul>
+          <div id="favorites-<%= @tweet.id %>">
+          <%= render 'favorites/favorite', tweet: @tweet %>
+          </div>
+          
+          <p class="text-right">
+            <small class="text-muted">更新日：<%= @tweet.updated_at.strftime("%Y-%m-%d") %></small>
+          </p>
+         </div>
       </div>
-      
-      <% if user_signed_in? %>
-      <%= bootstrap_form_with model: [@tweet, @comment], local: true do |f| %>
-      <%= f.text_field :text, placeholder: "コメントする" %>
-      <%= f.submit "送信", class: "btn btn-primary mt-2" %>
-      <% end %>
-      <% end %>
+    </div>
+  </div>
+</div>
 
-      <% @tweet.comments.each do |comment| %>
-      <p>
-        <%= comment.text %>
-        <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-        <% if comment.user == current_user %>
-        <%= link_to '削除', [@tweet, comment], method: :delete, class: "btn btn-danger " %>
+<div class="container">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+        <% if user_signed_in? %>
+        <%= form_with model: [@tweet, @comment], local: true do |f| %>
+        <div class="form-group">
+        <%= f.text_field :text, placeholder: "コメントを追加", class: "form-control" %>
+        <%= f.submit "送信", class: "btn btn-primary mt-2" %>
+        </div>
         <% end %>
-      </p>
-      <div>
+        <% end %>
+
+        <% @tweet.comments.each do |comment| %>
+        <p>
+          <%= comment.text %>
+          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+          <% if comment.user == current_user %>
+          <%= link_to '削除', [@tweet, comment], method: :delete, class: "btn btn-danger btn-sm" %>
+          <% end %>
+        </p>
+        <% end %>
+        </div>
       </div>
-      <% end %>
     </div>
   </div>
 </div>

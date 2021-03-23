@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :memories
   end
   resources :tweets, only: [:index, :new, :create,:show, :destroy] do
+    collection do
+      get :search
+    end
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end

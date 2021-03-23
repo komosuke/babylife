@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @tweets = Tweet.all.order(created_at: :desc)
     @tweet = Tweet.new
@@ -18,6 +19,13 @@ class TweetsController < ApplicationController
     tweet = Tweet.find(params[:id])
     tweet.destroy
     redirect_to root_path
+  end
+
+  def search
+    genre = params[:genre]
+    @tweets = Tweet.where(genre: genre).order(created_at: :desc)
+    @tweet = Tweet.new
+    render :index
   end
 
   private

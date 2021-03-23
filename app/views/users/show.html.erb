@@ -1,55 +1,25 @@
-<div class="user-show">
-  <div class="user-box">
-    <div class="card" style="width: 30rem;">
-      <h1 class="title">
-        <%= @user.nickname%>のマイページ
-      </h1>
-      <% if user_signed_in? %>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <%= link_to "編集", edit_user_path(@user.id), method: :get, class: "nav-link active" %>
-        </li>
-      </ul>
-      <% end %>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <%= @user.nickname %>
-        </li>
-        <li class="list-group-item">
-          <%= @user.birthday %>
-        </li>
-        <li class="list-group-item">
-          <%= @user.profile %>
-        </li>
-      </ul>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center"><%= @user.nickname%>のページ</h5>
+            <ul class="list-group">
+              <li class="list-group-item">生年月日:<%= @user.birthday %></li>
+              <li class="list-group-item"><%= simple_format @user.profile %></li>
+            </ul>
+            <% if user_signed_in? && current_user.id == @user.id %>
+              <%= link_to "ユーザー編集", edit_user_path(@user.id), method: :get, class: "btn btn-success" %>
+            <% end %>
+        </div>
+      </div>
     </div>
+ 
+    <%= render 'shared/calender' %>
+
+    <div class="col-10 mx-auto">
+    <% @user.tweets.each do |tweet| %>
+    <%= render 'tweets/tweet', tweet: tweet  %>
+    <% end %>
   </div>
 </div>
-<%= render 'shared/calender' %>
-
-
-
-<div class='tweet-contents'>
-<% @user.tweets.each do |tweet| %>
-  <div class="tweet-block">
-    <div class="tweet-nickname">
-      <%= tweet.user.nickname %>
-    </div>
-    <% if user_signed_in? && current_user.id == tweet.user_id %>
-    <%= link_to "削除", tweet_path(tweet.id), method: :delete %>
-    <% end%>
-    <%= link_to [tweet] do %>
-    <div>
-      <%= image_tag tweet.image, class: "img-fluid img-thumbnail" %>
-      </div>
-      <% end %>
-    <div class="tweet-title">
-      <%= tweet.title %>
-    </div>
-    <div class="tweet-content">
-      <%= tweet.content %></p>
-    </div>
-    <%= tweet.genre_i18n %>
-  </div>
-  <% end %>
-  </div>

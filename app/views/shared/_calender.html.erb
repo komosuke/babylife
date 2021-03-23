@@ -1,13 +1,19 @@
-
-<%= link_to "記録する", new_user_memory_path(@user.id), class: "btn btn-primary" %>
-<div class="card">
-<%= month_calendar events: @memories do |date, memories| %>
-  <%= date.day %>
-
-  <% memories.each do |memory| %>
-    <div>
-      <%= link_to memory.title, user_memory_path(@user, memory) %>
+<% if user_signed_in? && current_user.id == @user.id %>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+      <%= link_to "記録する", new_user_memory_path(@user.id), class: "btn btn-info" %>
+        <div class="card-body">
+          <%= month_calendar events: @memories do |date, memories| %>
+          <%= date.day %>
+            <% memories.each do |memory| %>
+              <%= link_to memory.title, user_memory_path(@user, memory) %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
-<% end %>
+  <div>
 </div>
+<% end %>
