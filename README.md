@@ -24,12 +24,13 @@ http://3.115.48.97/
 生後何ヶ月というジャンルを選択することで、そのジャンルだけを表示させることもできます。
 投稿されたつぶやきの画像をクリックするとつぶやきの詳細画面に遷移します
 
-![Uploading createaccount.jpg…]()
+![createaccount](https://user-images.githubusercontent.com/78188354/112792414-604fb100-909e-11eb-8a6e-90d42ddf779a.jpg)
 ## 新規登録画面
 ニックネーム・Email・パスワード・自己紹介文を入力することで新規登録ができます。
 ニックネーム・Email・パスワードは必須で、自己紹介文は任意で入力できます。
 登録するとフラッシュメッセージで登録できたか確認できます。
 
+<img width="876" alt="newpost" src="https://user-images.githubusercontent.com/78188354/112792838-27fca280-909f-11eb-8da7-394a13de3df8.png">
 ## 投稿画面
 トップページから投稿ボタンを押すことでmodalが表示され投稿することができます。
 
