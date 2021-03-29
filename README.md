@@ -31,7 +31,9 @@ http://3.115.48.97/
 登録するとフラッシュメッセージで登録できたか確認できます。
 
 <img width="876" alt="newpost" src="https://user-images.githubusercontent.com/78188354/112792838-27fca280-909f-11eb-8da7-394a13de3df8.png">
+
 ## 投稿画面
+
 トップページから投稿ボタンを押すことでmodalが表示され投稿することができます。
 
 ![postdetails](https://user-images.githubusercontent.com/78188354/112811272-d95b0280-90b6-11eb-98ba-2af198427606.jpg)
