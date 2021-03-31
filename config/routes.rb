@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "tweets#index"
   resources :users, only: [:edit, :update, :show] do
     resources :memories
+    resources :favorites
   end
   resources :tweets, only: [:index, :new, :create,:show, :destroy] do
     collection do

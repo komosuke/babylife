@@ -1,4 +1,10 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!, only:[:create, :destroy]
+
+  def index
+    @tweets = Tweet.joins(:favorites).where(favorites: { user_id: params[:user_id]})
+  end
+
   def create
     @tweet = Tweet.find(params[:tweet_id])
     @favorite = current_user.favorites.create(tweet_id: params[:tweet_id])
