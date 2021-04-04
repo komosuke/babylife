@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
-  belongs_to :tweet
-  belongs_to :user
+  belongs_to :tweet, dependent: :destroy
+  belongs_to :user, dependent: :destroy
+
+  validates :text, presence: true
 end
